@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="tenten_blue">#33B5E5</color>
+    <color name="confirm_yellow">#FFC107</color>
+    <color name="point_green">#2ADBAA</color>
+    <color name="experience_color">#F54F87</color>
+    <color name="experience_grey">#E2E2E2</color>
+    <color name="transparent">#00FFFFFF</color>
+</resources>
