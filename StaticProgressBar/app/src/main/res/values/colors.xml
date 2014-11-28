@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="tenten_blue">#33B5E5</color>
-    <color name="confirm_yellow">#FFC107</color>
-    <color name="point_green">#2ADBAA</color>
-    <color name="experience_color">#F54F87</color>
-    <color name="experience_grey">#E2E2E2</color>
-    <color name="transparent">#00FFFFFF</color>
+    <!-- Google's Material Design Color Palette (http://www.google.com/design/spec/style/color.html#color-color-palette) -->
+    <color name="red_500">#F44336</color>
+    <color name="red_200">#EF9A9A</color>
+    <color name="purple_500">#9C27B0</color>
+    <color name="purple_200">#CE93D8</color>
+    <color name="blue_500">#2196F3</color>
+    <color name="blue_200">#90CAF9</color>
+    <color name="green_500">#4CAF50</color>
+    <color name="green_200">#A5D6A7</color>
+    <color name="orange_500">#FF9800</color>
+    <color name="orange_200">#FFCC80</color>
+    <color name="brown_500">#795548</color>
+    <color name="brown_200">#BCAAA4</color>
+    <color name="grey_500">#9E9E9E</color>
+    <color name="grey_200">#EEEEEE</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+
 </resources>

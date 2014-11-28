@@ -46,8 +46,8 @@ public class CustomProgress extends RelativeLayout {
 
     private void setDefaultValue() {
         // default color
-        progressColor = getResources().getColor(R.color.experience_color);
-        progressBackgroundColor = getResources().getColor(R.color.experience_grey);
+        progressColor = getResources().getColor(R.color.red_500);
+        progressBackgroundColor = getResources().getColor(R.color.red_200);
     }
 
     //View Lifecycle
@@ -66,7 +66,7 @@ public class CustomProgress extends RelativeLayout {
         progressDrawable.draw(canvas);
         if(width<maxWidth) {
             width+=5;
-            postInvalidate();
+            invalidate();
         }
     }
 

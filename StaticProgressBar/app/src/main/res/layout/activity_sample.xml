@@ -9,9 +9,18 @@
     tools:context=".SampleActivity">
 
     <nayoso.staticprogressbar.CustomProgress
-        android:id="@+id/customProgress"
-        android:layout_centerInParent="true"
-        android:layout_width="220dp"
-        android:layout_height="50dp" />
+        android:id="@+id/customProgressRectangle"
+        android:layout_marginTop="@dimen/custom_progress_margin"
+        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/custom_progress_width"
+        android:layout_height="@dimen/custom_progress_height" />
+
+    <nayoso.staticprogressbar.CustomProgress
+        android:id="@+id/customProgressRoundedRectangle"
+        android:layout_below="@+id/customProgressRectangle"
+        android:layout_marginTop="@dimen/custom_progress_margin"
+        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/custom_progress_width"
+        android:layout_height="@dimen/custom_progress_height" />
 
 </RelativeLayout>

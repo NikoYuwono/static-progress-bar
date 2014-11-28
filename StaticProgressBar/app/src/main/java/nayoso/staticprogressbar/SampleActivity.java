@@ -1,6 +1,7 @@
 package nayoso.staticprogressbar;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,9 +13,16 @@ public class SampleActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sample);
-        CustomProgress customProgress = (CustomProgress) findViewById(R.id.customProgress);
-        customProgress.setPercentage(0.75f);
-        customProgress.useRoundedRectangleShape(30.0f);
+        Resources res = getResources();
+        CustomProgress customProgressRectangle = (CustomProgress) findViewById(R.id.customProgressRectangle);
+        customProgressRectangle.setPercentage(0.75f);
+        customProgressRectangle.setProgressColor(res.getColor(R.color.red_500));
+        customProgressRectangle.setProgressBackgroundColor(res.getColor(R.color.red_200));
+        CustomProgress customProgressRoundedRectangle = (CustomProgress) findViewById(R.id.customProgressRoundedRectangle);
+        customProgressRoundedRectangle.setPercentage(0.45f);
+        customProgressRoundedRectangle.useRoundedRectangleShape(30.0f);
+        customProgressRoundedRectangle.setProgressColor(res.getColor(R.color.purple_500));
+        customProgressRoundedRectangle.setProgressBackgroundColor(res.getColor(R.color.purple_200));
     }
 
 
