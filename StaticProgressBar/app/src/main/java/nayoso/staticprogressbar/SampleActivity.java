@@ -2,7 +2,9 @@ package nayoso.staticprogressbar;
 
 import android.app.Activity;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -15,14 +17,32 @@ public class SampleActivity extends Activity {
         setContentView(R.layout.activity_sample);
         Resources res = getResources();
         CustomProgress customProgressRectangle = (CustomProgress) findViewById(R.id.customProgressRectangle);
-        customProgressRectangle.setPercentage(0.75f);
+        customProgressRectangle.setMaximumPercentage(0.75f);
         customProgressRectangle.setProgressColor(res.getColor(R.color.red_500));
         customProgressRectangle.setProgressBackgroundColor(res.getColor(R.color.red_200));
+
         CustomProgress customProgressRoundedRectangle = (CustomProgress) findViewById(R.id.customProgressRoundedRectangle);
-        customProgressRoundedRectangle.setPercentage(0.45f);
+        customProgressRoundedRectangle.setMaximumPercentage(0.25f);
         customProgressRoundedRectangle.useRoundedRectangleShape(30.0f);
         customProgressRoundedRectangle.setProgressColor(res.getColor(R.color.purple_500));
         customProgressRoundedRectangle.setProgressBackgroundColor(res.getColor(R.color.purple_200));
+
+        CustomProgress customProgressText = (CustomProgress) findViewById(R.id.customProgressText);
+        customProgressText.setMaximumPercentage(0.50f);
+        customProgressText.setProgressColor(res.getColor(R.color.blue_500));
+        customProgressText.setProgressBackgroundColor(res.getColor(R.color.blue_200));
+        customProgressText.setText("Rectangle");
+        customProgressText.setTextSize(20);
+        customProgressText.setTextColor(Color.WHITE);
+        customProgressText.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+        customProgressText.setPadding(50,0,0,0);
+
+        CustomProgress customProgressShowProgress = (CustomProgress) findViewById(R.id.customProgressShowProgress);
+        customProgressShowProgress.setMaximumPercentage(1.0f);
+        customProgressShowProgress.useRoundedRectangleShape(30.0f);
+        customProgressShowProgress.setProgressColor(res.getColor(R.color.green_500));
+        customProgressShowProgress.setProgressBackgroundColor(res.getColor(R.color.green_200));
+        customProgressShowProgress.setShowingPercentage(true);
     }
 
 

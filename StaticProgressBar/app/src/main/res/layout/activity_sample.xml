@@ -23,4 +23,20 @@
         android:layout_width="@dimen/custom_progress_width"
         android:layout_height="@dimen/custom_progress_height" />
 
+    <nayoso.staticprogressbar.CustomProgress
+        android:id="@+id/customProgressText"
+        android:layout_below="@+id/customProgressRoundedRectangle"
+        android:layout_marginTop="@dimen/custom_progress_margin"
+        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/custom_progress_width"
+        android:layout_height="@dimen/custom_progress_height" />
+
+
+    <nayoso.staticprogressbar.CustomProgress
+        android:id="@+id/customProgressShowProgress"
+        android:layout_below="@+id/customProgressText"
+        android:layout_marginTop="@dimen/custom_progress_margin"
+        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/custom_progress_width"
+        android:layout_height="@dimen/custom_progress_height" />
 </RelativeLayout>

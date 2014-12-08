@@ -2,30 +2,34 @@ package nayoso.staticprogressbar;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.graphics.drawable.shapes.Shape;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.widget.RelativeLayout;
+import android.view.Gravity;
+import android.widget.TextView;
 
 import java.util.Arrays;
 
-public class CustomProgress extends RelativeLayout {
+public class CustomProgress extends TextView {
 
     private final static int SHAPE_RECTANGLE = 0;
     private final static int SHAPE_ROUNDED_RECTANGLE = 1;
+    private final static int DEFAULT_TEXT_MARGIN = 10;
 
 	private ShapeDrawable progressDrawable;
+    private TextView textView;
 	private int width = 0;
     private int maxWidth = 0;
     private int progressColor;
     private int progressBackgroundColor;
     private int progressShape = SHAPE_RECTANGLE;
-    private float percentage = 0.0f;
+    private float maximumPercentage = 0.0f;
     private float cornerRadius = 25.0f;
+    private boolean showingPercentage = false;
 
     //Constructor
 
@@ -64,12 +68,18 @@ public class CustomProgress extends RelativeLayout {
         super.onDraw(canvas);
         progressDrawable.setBounds(0, 0, width, this.getHeight());
         progressDrawable.draw(canvas);
+        if(isShowingPercentage()) {
+            this.setText(getCurrentPercentage()+"%");
+        }
         if(width<maxWidth) {
             width+=5;
             invalidate();
         }
     }
 
+    /**
+     * Initialize the view before it will be drawn
+     */
     private void initView() {
         Shape progressShapeDrawable = null;
         Shape backgroundProgressShapeDrawable = null;
@@ -85,9 +95,14 @@ public class CustomProgress extends RelativeLayout {
                 backgroundProgressShapeDrawable = new RoundRectShape(outerRadius, null, null);
                 break;
         }
+
         //Progress
         progressDrawable = new ShapeDrawable(progressShapeDrawable);
         progressDrawable.getPaint().setColor(progressColor);
+        if((this.getText().length() > 0) || isShowingPercentage()) {
+            progressDrawable.setAlpha(100);
+        }
+
         //Background
         ShapeDrawable backgroundDrawable = new ShapeDrawable(backgroundProgressShapeDrawable);
         backgroundDrawable.getPaint().setColor(progressBackgroundColor);
@@ -98,37 +113,87 @@ public class CustomProgress extends RelativeLayout {
             this.setBackgroundDrawable(backgroundDrawable);
         }
 
-        this.maxWidth = (int) (this.getWidth() * percentage);
+        this.maxWidth = (int) (this.getWidth() * maximumPercentage);
+
+        //Percentage
+        if(isShowingPercentage()) {
+            this.setTextSize(20);
+            this.setTextColor(Color.WHITE);
+            this.setGravity(Gravity.CENTER);
+        }
     }
 
     //Helper
 
+    /**
+     * Set the progress color
+     * @param color
+     */
     public void setProgressColor(int color) {
         this.progressColor = color;
     }
 
+    /**
+     * Set the background color
+     * @param color
+     */
     public void setProgressBackgroundColor(int color) {
         this.progressBackgroundColor = color;
     }
 
+    /**
+     * Reset the progress to 0
+     */
     public void resetWidth() {
         width = 0;
     }
 
-    public void setPercentage(float percentage) {
-        this.percentage = percentage;
+    /**
+     * Set the maximum percentage for the progress
+     * @param percentage
+     */
+    public void setMaximumPercentage(float percentage) {
+        this.maximumPercentage = percentage;
     }
 
-    public boolean isPercentageChanging(float percentage) {
-        return this.percentage != percentage;
+    /**
+     * Get current percentage based on current width
+     * @return
+     */
+    public int getCurrentPercentage() {
+        return (int) Math.ceil((width/(maxWidth*1.0f))*100);
     }
 
-    public void useRectangleShape(int progressShape) {
-        this.progressShape = progressShape;
+    /**
+     * Set the shape of custom progress to rectangle
+     */
+    public void useRectangleShape() {
+        this.progressShape = SHAPE_RECTANGLE;
     }
 
+    /**
+     * Set the shape of custom progress to rounded rectangle
+     * @param cornerRadius radius of the corner
+     */
     public void useRoundedRectangleShape(float cornerRadius) {
         this.progressShape = SHAPE_ROUNDED_RECTANGLE;
         this.cornerRadius = cornerRadius;
+    }
+
+    /**
+     * If this returns true the custom progress
+     * will show progress based on getCurrentPercentage()
+     * @return true for showing percentage false for not showing anything
+     */
+    public boolean isShowingPercentage() {
+        return showingPercentage;
+    }
+
+    /**
+     * Set if the custom progress will show percentage or not
+     * @param showingPercentage true for showing percentage false for not showing anything
+     */
+    public void setShowingPercentage(boolean showingPercentage) {
+        this.showingPercentage = showingPercentage;
     }
 }
