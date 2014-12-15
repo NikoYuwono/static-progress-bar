@@ -1,9 +1,9 @@
 static-progress-bar
 ===================
 
-[![alt text](https://img.shields.io/badge/Android%20Arsenal-static--progress--bar-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1214)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-static--progress--bar-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1214)
 
-![alt text](http://i1094.photobucket.com/albums/i446/NAYOSO/static_progress_example_zpsadaw3xis.gif)
+![Image Demo](http://i1094.photobucket.com/albums/i446/NAYOSO/static_progress_example_zpsadaw3xis.gif)
 
 Custom static progress bar for Android where you can set your own shape and color.
 
