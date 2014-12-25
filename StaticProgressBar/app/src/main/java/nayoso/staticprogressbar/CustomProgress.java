@@ -49,6 +49,7 @@ public class CustomProgress extends TextView {
     private TextView textView;
 	private int width = 0;
     private int maxWidth = 0;
+    private int maxHeight = 0;
     private int progressColor;
     private int progressBackgroundColor;
     private int progressShape = SHAPE_RECTANGLE;
