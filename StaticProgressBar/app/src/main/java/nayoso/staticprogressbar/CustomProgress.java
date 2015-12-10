@@ -1,18 +1,14 @@
 /**
-  The MIT License (MIT)
-
+ The MIT License (MIT)
  Copyright (c) 2014 Niko Yuwono
-
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
-
  The above copyright notice and this permission notice shall be included in all
  copies or substantial portions of the Software.
-
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,7 +18,6 @@
  SOFTWARE.
  **/
 package nayoso.staticprogressbar;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -36,7 +31,6 @@ import android.view.Gravity;
 import android.widget.TextView;
 
 import java.util.Arrays;
-
 import nayoso.staticprogressbar.R;
 
 public class CustomProgress extends TextView {
@@ -45,24 +39,26 @@ public class CustomProgress extends TextView {
     private final static int SHAPE_ROUNDED_RECTANGLE = 1;
     private final static int DEFAULT_TEXT_MARGIN = 10;
 
-	private ShapeDrawable progressDrawable;
+    private ShapeDrawable progressDrawable;
     private TextView textView;
-	private int width = 0;
+    private int width = 0;
     private int maxWidth = 0;
     private int maxHeight = 0;
     private int progressColor;
     private int progressBackgroundColor;
     private int progressShape = SHAPE_RECTANGLE;
-    private float maximumPercentage = 0.0f;
+    private float maximumPercentage = .0f;
     private float cornerRadius = 25.0f;
     private boolean showingPercentage = false;
+    private int speed = 20;
+    private boolean resetToZero = false;
 
     //Constructor
 
-	public CustomProgress(Context context) {
-		super(context);
+    public CustomProgress(Context context) {
+        super(context);
         setDefaultValue();
-	}
+    }
 
     public CustomProgress(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -97,8 +93,13 @@ public class CustomProgress extends TextView {
         if(isShowingPercentage()) {
             this.setText(getCurrentPercentage()+"%");
         }
-        if(width<maxWidth) {
-            width+=5;
+        //if the we want to reset to 0
+        if(resetToZero) {
+            width = 0;
+            resetToZero = false;
+            invalidate();
+        } else if(width < maxWidth) {
+            width+= this.speed;
             invalidate();
         }
     }
@@ -221,5 +222,20 @@ public class CustomProgress extends TextView {
      */
     public void setShowingPercentage(boolean showingPercentage) {
         this.showingPercentage = showingPercentage;
+    }
+    /**
+     * Set the speed of the movement of the progress
+     * @param speed as an int it should range from [1,100]
+     */
+    public void setSpeed(int speed){
+        this.speed = speed;
+    }
+    /**
+     * call the function when you want to update view
+     */
+    public void updateView() {
+        resetToZero = true;
+        initView();
+        invalidate();
     }
 }
